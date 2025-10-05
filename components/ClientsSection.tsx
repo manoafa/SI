@@ -17,31 +17,31 @@ const clientLogos = [
 
 const testimonials = [
   {
-    name: "Marie Dubois",
-    position: "Directrice Technique",
-    company: "TechCorp",
+    name: "Brunah Fabiola",
+    position: "Fondatrice",
+    company: "Tsiky Solidarite",
     content: "S.INNOVATION a transformé notre infrastructure digitale. Leur expertise et leur approche collaborative ont dépassé nos attentes.",
     rating: 5
   },
   {
-    name: "Ahmed Hassan",
+    name: "Camille Ratsimbazafy",
     position: "CEO",
-    company: "InnovateLab",
+    company: "RMK",
     content: "Une équipe exceptionnelle qui comprend parfaitement les enjeux business. Leur solution mobile a révolutionné notre service client.",
     rating: 5
   },
   {
-    name: "Sophie Martin",
+    name: "Misandratra",
     position: "Responsable Digital",
-    company: "RetailPlus",
-    content: "Grâce à S.INNOVATION, nous avons modernisé notre plateforme e-commerce. Résultats immédiats et équipe très professionnelle.",
+    company: "ISCAM",
+    content: "Grâce à S.INNOVATION, nous avons modernisé notre plateforme e-learning. Résultats immédiats et équipe très professionnelle.",
     rating: 5
   }
 ]
 
 export default function ClientsSection() {
   return (
-    <section id="clients" className="py-20 bg-gray-50">
+    <section id="clients" className="py-20 bg-gray-50 text-center">
       <div className="container mx-auto px-4">
         {/* Section Header */}
         <motion.div

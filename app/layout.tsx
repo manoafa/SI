@@ -10,6 +10,14 @@ export const metadata: Metadata = {
   keywords: 'développement web, applications mobiles, formation, consultation, transformation digitale',
   authors: [{ name: 'S.INNOVATION' }],
   viewport: 'width=device-width, initial-scale=1',
+  icons: {
+    icon: [
+      { url: '/logo.png', sizes: 'any', type: 'image/png' },
+    ],
+    apple: [
+      { url: '/logo.png', sizes: '180x180', type: 'image/png' },
+    ],
+  },
 }
 
 export default function RootLayout({
@@ -19,6 +27,11 @@ export default function RootLayout({
 }) {
   return (
     <html lang="fr">
+      <head>
+        <link rel="icon" href="/logo.png" type="image/png" />
+        <link rel="apple-touch-icon" href="/logo.png" />
+        <link rel="shortcut icon" href="/logo.png" />
+      </head>
       <body className={inter.className}>
         {children}
       </body>

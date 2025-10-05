@@ -60,7 +60,7 @@ export default function ServicesSection() {
         </motion.div>
 
         {/* Services Grid */}
-        <div className="grid md:grid-cols-3 gap-8 mb-20">
+        <div className="grid md:grid-cols-3 gap-8 mb-20 text-justify">
           {services.map((service, index) => (
             <motion.div
               key={index}
