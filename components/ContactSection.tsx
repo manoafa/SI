@@ -50,22 +50,41 @@ export default function ContactSection() {
     setError('')
 
     try {
-      const response = await fetch('/api/contact', {
+      // Web3Forms API configuration
+      const web3formsAccessKey = 'bb46c38e-f7f4-474a-892a-64ad9f17a1ef'
+      const web3formsEndpoint = 'https://api.web3forms.com/submit'
+
+      // Prepare data for Web3Forms
+      const formDataToSend = {
+        access_key: web3formsAccessKey,
+        name: formData.name,
+        email: formData.email,
+        company: formData.company || '',
+        service: formData.service || '',
+        message: formData.message,
+        from_name: 'S.INNOVATION Contact Form',
+        subject: `Formulaire -  ${formData.name}${formData.company ? ` (${formData.company})` : ''}`,
+        reply_to: formData.email,
+        form_name: 'S.INNOVATION Contact Form',
+        website: 'S.INNOVATION Website'
+      }
+
+      const response = await fetch(web3formsEndpoint, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(formData)
+        body: JSON.stringify(formDataToSend)
       })
 
       const result = await response.json()
 
-      if (response.ok) {
+      if (response.ok && result.success) {
         setIsSubmitted(true)
         setFormData({ name: '', email: '', company: '', service: '', message: '' })
         setTimeout(() => setIsSubmitted(false), 5000)
       } else {
-        throw new Error(result.error || 'Failed to send message')
+        throw new Error(result.message || 'Failed to send message via Web3Forms')
       }
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Une erreur est survenue. Veuillez réessayer.')

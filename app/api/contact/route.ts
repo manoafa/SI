@@ -1,13 +1,13 @@
 import { NextRequest, NextResponse } from 'next/server'
-import nodemailer from 'nodemailer'
+// import nodemailer from 'nodemailer'
 
 // Explicitly load environment variables
-import { config } from 'dotenv'
-import path from 'path'
+// import { config } from 'dotenv'
+// import path from 'path'
 
 // Load .env.local first, then .env
-config({ path: path.resolve(process.cwd(), '.env.local') })
-config({ path: path.resolve(process.cwd(), '.env') })
+// config({ path: path.resolve(process.cwd(), '.env.local') })
+// config({ path: path.resolve(process.cwd(), '.env') })
 
 export async function POST(request: NextRequest) {
   try {
@@ -21,49 +21,51 @@ export async function POST(request: NextRequest) {
       )
     }
 
-    // Debug environment variables
-    console.log('Environment variables check:')
-    console.log('SMTP_HOST:', process.env.SMTP_HOST ? 'Set' : 'Missing')
-    console.log('SMTP_USER:', process.env.SMTP_USER ? 'Set' : 'Missing')
-    console.log('SMTP_PASS:', process.env.SMTP_PASS ? 'Set' : 'Missing')
-    console.log('SMTP_PORT:', process.env.SMTP_PORT)
-    console.log('SMTP_SECURE:', process.env.SMTP_SECURE)
+    // Web3Forms API configuration
+    const web3formsAccessKey = 'bb46c38e-f7f4'
+    const web3formsEndpoint = 'https://api.web3forms.com/submit'
 
-    // Fallback SMTP configuration if environment variables are not loaded
-    const smtpHost = process.env.SMTP_HOST || 'mail.sinnov.info'
-    const smtpUser = process.env.SMTP_USER || 'form@sinnov.info'
-    const smtpPass = process.env.SMTP_PASS || 'FOrmuL4ireCOnt4ct'
-    const smtpPort = process.env.SMTP_PORT || '587'
+    console.log('Using Web3Forms API for email delivery')
 
-    console.log('Using SMTP configuration:', {
-      host: smtpHost,
-      user: smtpUser,
-      pass: smtpPass ? 'Set' : 'Missing',
-      port: smtpPort
-    })
-
-    // Create SMTP transporter with fallback values
-    const smtpConfig = {
-      host: smtpHost,
-      port: parseInt(smtpPort),
-      secure: false, // Port 587 uses STARTTLS, not SSL
-      requireTLS: true, // Enable STARTTLS for port 587
-      auth: {
-        user: smtpUser,
-        pass: smtpPass,
-      },
+    // Prepare data for Web3Forms
+    const formData = {
+      access_key: web3formsAccessKey,
+      name: name,
+      email: email,
+      company: company || '',
+      service: service || '',
+      message: message,
+      from_name: 'S.INNOVATION Contact Form',
+      subject: `Nouveau message de ${name}${company ? ` (${company})` : ''}`,
+      reply_to: email,
+      // Additional metadata
+      form_name: 'S.INNOVATION Contact Form',
+      website: 'S.INNOVATION Website'
     }
 
-    console.log('SMTP Config:', {
-      host: smtpConfig.host,
-      port: smtpConfig.port,
-      secure: smtpConfig.secure,
-      requireTLS: smtpConfig.requireTLS,
-      user: smtpConfig.auth.user
+    // Send to Web3Forms API
+    const response = await fetch(web3formsEndpoint, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(formData)
     })
 
-    const transporter = nodemailer.createTransport(smtpConfig)
+    const result = await response.json()
 
+    if (!response.ok || !result.success) {
+      console.error('Web3Forms API error:', result)
+      return NextResponse.json(
+        { error: 'Failed to send message via Web3Forms' },
+        { status: 500 }
+      )
+    }
+
+    console.log('Email sent successfully via Web3Forms:', result.message_id)
+
+    /* 
+    // OLD SMTP IMPLEMENTATION - COMMENTED FOR LATER USE
     // Email content
     const emailSubject = `Formulaire - ${name}${company ? ` (${company})` : ''}`
     
@@ -146,6 +148,7 @@ Envoyé depuis le formulaire de contact du site web S.INNOVATION
       text: emailText,
       html: emailHtml,
     })
+    */
 
     return NextResponse.json(
       { message: 'Email sent successfully' },
@@ -153,10 +156,20 @@ Envoyé depuis le formulaire de contact du site web S.INNOVATION
     )
 
   } catch (error) {
-    console.error('Error sending email:', error)
+    console.error('Error sending email via Web3Forms:', error)
     return NextResponse.json(
-      { error: 'Failed to send email' },
+      { error: 'Failed to send email via Web3Forms' },
       { status: 500 }
     )
   }
 }
+
+/* 
+// OLD SMTP IMPLEMENTATION - COMMENTED FOR LATER USE
+// This section contains the original SMTP configuration and email sending logic
+// To restore SMTP functionality:
+// 1. Uncomment the imports at the top
+// 2. Uncomment the environment variable loading
+// 3. Replace the Web3Forms implementation with the commented SMTP code
+// 4. Update the error handling to use SMTP-specific messages
+*/
