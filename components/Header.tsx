@@ -38,11 +38,20 @@ export default function Header() {
                 className="w-full h-full object-contain"
               />
             </div>
-            <span className={`font-bold text-2xl transition-colors duration-300 ${
-              isScrolled ? 'text-gray-900' : 'text-white'
-            }`}>
-              S.INNOVATION
-            </span>
+            <div className="flex flex-col">
+              {/* Company Name */}
+              <span className={`font-bold text-2xl transition-colors duration-300 ${
+                isScrolled ? 'text-gray-900' : 'text-white'
+              }`}>
+                S.INNOVATION
+              </span>
+              {/* Tagline */}
+              <div className={`text-xs font-medium tracking-wider uppercase transition-colors duration-300 ${
+                isScrolled ? 'text-secondary-600' : 'text-secondary-300'
+              }`}>
+                Smart - Solutions - Sustainable
+              </div>
+            </div>
           </div>
 
           {/* Desktop Menu */}

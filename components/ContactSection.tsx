@@ -14,7 +14,7 @@ const contactInfo = [
   {
     icon: Phone,
     title: "Téléphone",
-    value: "+261 38 06 654 18 | +7 901 739 62 33",
+    value: "+261 32 04 443 74 | +7 901 739 62 33",
     description: "Lun-Ven 9h-18h"
   },
   {
@@ -34,6 +34,8 @@ export default function ContactSection() {
     message: ''
   })
   const [isSubmitted, setIsSubmitted] = useState(false)
+  const [isLoading, setIsLoading] = useState(false)
+  const [error, setError] = useState('')
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     setFormData({
@@ -42,12 +44,34 @@ export default function ContactSection() {
     })
   }
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    // Simulation d'envoi - vous pouvez intégrer votre service d'email ici
-    console.log('Form submitted:', formData)
-    setIsSubmitted(true)
-    setTimeout(() => setIsSubmitted(false), 3000)
+    setIsLoading(true)
+    setError('')
+
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData)
+      })
+
+      const result = await response.json()
+
+      if (response.ok) {
+        setIsSubmitted(true)
+        setFormData({ name: '', email: '', company: '', service: '', message: '' })
+        setTimeout(() => setIsSubmitted(false), 5000)
+      } else {
+        throw new Error(result.error || 'Failed to send message')
+      }
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'Une erreur est survenue. Veuillez réessayer.')
+    } finally {
+      setIsLoading(false)
+    }
   }
 
   return (
@@ -81,7 +105,7 @@ export default function ContactSection() {
               Parlons de votre projet
             </h3>
             <p className="text-gray-600 mb-8 leading-relaxed">
-              Notre équipe d'experts est prête à vous accompagner dans votre transformation digitale. 
+              Notre équipe d&apos;experts est prête à vous accompagner dans votre transformation digitale. 
               Que ce soit pour un projet web, mobile, formation ou consultation, nous adaptons nos 
               solutions à vos besoins spécifiques.
             </p>
@@ -161,6 +185,12 @@ export default function ContactSection() {
                 </motion.div>
               ) : (
                 <form onSubmit={handleSubmit} className="space-y-6">
+                  {error && (
+                    <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-lg">
+                      {error}
+                    </div>
+                  )}
+                  
                   <div className="grid md:grid-cols-2 gap-6">
                     <div>
                       <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2">
@@ -211,7 +241,7 @@ export default function ContactSection() {
                     </div>
                     <div>
                       <label htmlFor="service" className="block text-sm font-medium text-gray-700 mb-2">
-                        Service d'intérêt
+                        Service d&apos;intérêt
                       </label>
                       <select
                         id="service"
@@ -223,7 +253,7 @@ export default function ContactSection() {
                         <option value="">Sélectionnez un service</option>
                         <option value="developpement">Conception et Développement</option>
                         <option value="formation">Formation</option>
-                        <option value="consultation">Consultation d'Entreprise</option>
+                        <option value="consultation">Consultation d&apos;Entreprise</option>
                         <option value="autre">Autre</option>
                       </select>
                     </div>
@@ -247,10 +277,20 @@ export default function ContactSection() {
 
                   <button
                     type="submit"
-                    className="w-full btn-primary flex items-center justify-center space-x-2"
+                    disabled={isLoading}
+                    className="w-full btn-primary flex items-center justify-center space-x-2 disabled:opacity-50 disabled:cursor-not-allowed"
                   >
-                    <Send className="w-5 h-5" />
-                    <span>Envoyer le message</span>
+                    {isLoading ? (
+                      <>
+                        <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+                        <span>Envoi en cours...</span>
+                      </>
+                    ) : (
+                      <>
+                        <Send className="w-5 h-5" />
+                        <span>Envoyer le message</span>
+                      </>
+                    )}
                   </button>
                 </form>
               )}

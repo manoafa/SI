@@ -28,7 +28,14 @@ export default function Footer() {
                   className="w-full h-full object-contain"
                 />
               </div>
-              <span className="font-bold text-2xl">S.INNOVATION</span>
+              <div className="flex flex-col">
+                {/* Company Name */}
+                <span className="font-bold text-2xl">S.INNOVATION</span>
+                {/* Tagline */}
+                <div className="text-xs font-medium tracking-wider uppercase text-secondary-400">
+                  Smart - Solutions - Sustainable
+                </div>
+              </div>
             </div>
             <p className="text-gray-300 mb-6 max-w-md leading-relaxed">
               Solutions numériques responsables depuis plus de 5 ans. Nous accompagnons nos clients 
@@ -121,7 +128,7 @@ export default function Footer() {
               <div className="flex items-start space-x-3">
                 <Phone className="w-5 h-5 text-primary-400 mt-1" />
                 <div>
-                  <p className="text-gray-300">+261 38 06 654 18 | +7 901 739 62 33</p>
+                  <p className="text-gray-300">+261 32 04 443 74 | +7 901 739 62 33</p>
                 </div>
               </div>
               <div className="flex items-start space-x-3">
