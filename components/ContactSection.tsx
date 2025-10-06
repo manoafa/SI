@@ -50,25 +50,26 @@ export default function ContactSection() {
     setError('')
 
     try {
-      const response = await fetch('/api/contact', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formData)
-      })
+      // For static export, use mailto since API routes don't work
+      const subject = `Nouveau message de ${formData.name}${formData.company ? ` (${formData.company})` : ''}`
+      const body = `
+Service: ${formData.service || 'Non spécifié'}
+Email: ${formData.email}
+Message: ${formData.message}
 
-      const result = await response.json()
+---
+Envoyé depuis le formulaire de contact S.INNOVATION
+      `.trim()
 
-      if (response.ok) {
-        setIsSubmitted(true)
-        setFormData({ name: '', email: '', company: '', service: '', message: '' })
-        setTimeout(() => setIsSubmitted(false), 5000)
-      } else {
-        throw new Error(result.error || 'Failed to send message')
-      }
+      const mailtoLink = `mailto:contact@sinnov.info?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`
+      window.open(mailtoLink)
+      
+      setIsSubmitted(true)
+      setFormData({ name: '', email: '', company: '', service: '', message: '' })
+      setTimeout(() => setIsSubmitted(false), 5000)
+      
     } catch (err) {
-      setError(err instanceof Error ? err.message : 'Une erreur est survenue. Veuillez réessayer.')
+      setError('Impossible d\'ouvrir votre client email. Veuillez nous contacter directement à contact@sinnov.info')
     } finally {
       setIsLoading(false)
     }
