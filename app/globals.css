@@ -8,7 +8,7 @@
   }
   
   body {
-    @apply bg-gray-50 text-gray-900;
+    @apply bg-gray-50 text-gray-900 transition-colors duration-200 dark:bg-gray-950 dark:text-gray-100;
   }
 }
 
@@ -22,7 +22,7 @@
   }
   
   .card {
-    @apply bg-white rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2;
+    @apply bg-white rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 dark:bg-gray-900 dark:shadow-gray-900/40 dark:border dark:border-gray-800;
   }
   
   .gradient-bg {
@@ -31,5 +31,13 @@
   
   .text-gradient {
     @apply bg-gradient-to-r from-secondary-500 to-accent-500 bg-clip-text text-transparent;
+  }
+
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
   }
 }

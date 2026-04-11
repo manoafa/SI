@@ -1,0 +1,258 @@
+import type { TranslationDict } from '../localeTypes'
+import { en } from './en'
+
+const mgOverrides: Partial<TranslationDict> = {
+  'site.title': 'S.Innovation — Vahaolana nomerika sy fiofanana matihanina',
+
+  'nav.home': 'Fandraisana',
+  'nav.services': 'Tolotra',
+  'nav.about': 'Momba',
+  'nav.clients': 'Traikefa',
+  'nav.contact': 'Fifandraisana',
+
+  'header.tagline': 'Hiofanana tsara kokoa · Hanangana tsara kokoa · Hitombo haingana kokoa',
+
+  'hero.title.before': 'Ampitomboy ny orinasanao amin’ny',
+  'hero.title.highlight': 'vahaolana nomerika ',
+  'hero.title.after': 'sy fiofanana matihanina',
+  'hero.subtitle': 'Manampy ny orinasa hanao tsara kokoa — an-tserasera sy anatiny.',
+  'hero.lead':
+    'Na hanangana ny ekipa na hanamafy ny fisianao an-tserasera, manome fahaiza-manao izahay hampiakatra ny orinasanao.',
+  'hero.badge1': 'Fiofanana sy torohevitra',
+  'hero.badge2': 'Ekipa iraisam-pirenena',
+  'hero.badge3': 'Nanomboka tamin’ny  2019',
+  'hero.ctaPrimary': 'Fidio ny lalana',
+  'hero.ctaSecondary': 'Andao hiara-hiasa',
+  'hero.seeMore': 'Hijery bebe kokoa',
+
+  'services.sectionTitle': 'Fidio ny',
+  'services.sectionGradient': 'Lalana',
+  'services.sectionSubtitle':
+    'Misafidiana izay mifanaraka amin’ny tanjonao — manana ny fahaiza-manao amin’ny lalana roa izahay.',
+  'services.path1.title': 'Ampitomboy ny fisianao an-tserasera',
+  'services.path1.description':
+    'Manamboatra sy manangana tranonkala moderina sy manan-danja mamadika ny mpitsidika ho mpanjifa.',
+  'services.path1.f1': 'UI/UX mazava, mifantoka amin’ny vokatra',
+  'services.path1.f2': 'Fananganana haingana sy mifanaraka amin’ny fitaovana rehetra',
+  'services.path1.f3': 'Fomba fiasa miorina amin’ny orinasa',
+  'services.path1.lead': 'Tranonkala hampitombo ny vokatra.',
+  'services.path1.cta': 'Hijery ny tolotra web',
+  'services.path2.title': 'Hiofanana sy hampahomby ny ekipa',
+  'services.path2.description':
+    'Manampy ny orinasa hanao tsara kokoa amin’ny fiofanana mahasoa sy mifantoka amin’ny vokatra.',
+  'services.path2.f1': 'Leadership',
+  'services.path2.f2': 'Team building',
+  'services.path2.f3': 'Fiofanana sy torohevitra',
+  'services.path2.lead': 'Ofano ny olonao, ampitomboy ny orinasanao.',
+  'services.path2.cta': 'Hijery ny fiofanana',
+  'services.discussProject': 'Resaho ny tetikasanao',
+
+  'services.modal.close': 'Akatona',
+  'services.modal.web.title': 'Vahaolana nomerika (Web)',
+  'services.modal.web.subtitle': 'Design + fananganana mifantoka amin’ny vokatra',
+  'services.modal.web.intro':
+    'Manambatra ny design efa lehibe amin’ny fanatanterahana haingana hanomezana tranonkala:',
+  'services.modal.web.h1': 'Matihanina sy moderina',
+  'services.modal.web.h2': 'Namboarina ho an’ny haingana sy ny hafaingana',
+  'services.modal.web.h3': 'Hahazoana lead sy finoana',
+  'services.modal.web.processTitle': 'Ny dingana',
+  'services.modal.web.p1': 'Fahatakarana ny orinasa sy ny filana',
+  'services.modal.web.p2': 'UI/UX (alohan’ny fananganana)',
+  'services.modal.web.p3': 'Fananganana sy fanatsarana',
+  'services.modal.web.p4': 'Fametrahana sy fanohanana',
+  'services.modal.training.title': 'Fiofanana sy torohevitra',
+  'services.modal.training.subtitle': 'Programa mahasoa ho an’ny vokatra',
+  'services.modal.training.intro': 'Manana traikefa an-taonany maro izahay amin’ny fiaraha-miasa amin’ny orinasa, ary manome fiofanana toy izao izahay:',
+  'services.modal.training.b1': 'Mifandray sy mahasarika',
+  'services.modal.training.b2': 'Mifanaraka amin’ny ilain’ny orinasanao',
+  'services.modal.training.b3': 'Mifantoka amin’ny fanatsarana azo refesina',
+  'services.modal.training.expertiseTitle': 'Ny fahaiza-manao',
+  'services.modal.training.e1': 'Leadership sy management',
+  'services.modal.training.e2': 'Hery ny ekipa',
+  'services.modal.training.e3': 'Communication sy fiaraha-miasa',
+
+  'about.title': 'Momban’ny ',
+  'about.titleGradient': 'S.Innovation',
+  'about.intro':
+    'Fiofanana mahasoa sy vahaolana nomerika moderina — ho an’ny orinasa mikatsaka fitomboana.',
+  'about.whoTitle': 'Iza moa izahay?',
+  'about.p1':
+    'Nanomboka tamin’ny taona 2019, nanohana ireo orinasa tamin’ny fiofanana, torohevitra ary tetikasa nomerika ny S.Innovation. Mampifangaro ny fianarana azo ampiharina amin’ny fampiharana amin’ny tranonkala matanjaka izahay mba hiarahan’ny ekipanao sy ny fisianao an-tserasera hiara-hiasa ho amin’ny fitomboana.',
+  'about.p2':
+    'Ny ekipa iraisam-pirenena miara-miasa eto Madagasikara, Frantsa, India, Rosia ary Korea Atsimo hanome vahaolana mifanaraka amin’ny ilain’ny orinasanao.',
+  'about.whereTitle': 'Aiza no iasantsika',
+  'about.country.MG': 'Madagasikara',
+  'about.country.FR': 'Frantsa',
+  'about.country.IN': 'India',
+  'about.country.RU': 'Rosia',
+  'about.country.KR': 'Korea Atsimo',
+  'about.stat.established': 'Nanomboka',
+  'about.stat.clients': 'Mpanjifa faly',
+  'about.stat.projects': 'Tetikasa vita',
+  'about.stat.countries': 'Firenena',
+  'about.whyTitle': 'Nahoana S.Innovation?',
+  'about.whyIntro': 'Mpiara-miasa izay mampifanaraka ny teknolojia sy ny fampandrosoana ny olona amin’ny tanjon’ny orinasanao.',
+  'about.why1.title': 'Miorina amin’ny orinasa',
+  'about.why1.desc': 'Mifantoka amin’ny vokatra — tsy ny livrable fotsiny.',
+  'about.why2.title': 'Fijery iraisam-pirenena',
+  'about.why2.desc': 'Eoropa sy Madagasikara: fahalalana manerantany sy mifanaraka amin’ny ilainao.',
+  'about.why3.title': 'Fanatanterahana haingana sy mahomby',
+  'about.why3.desc': 'Dingana mazava, fanavaozana haingana, tsy misy fanapotehana.',
+  'about.why4.title': 'Mifantoka amin’ny vokatra marina',
+  'about.why4.desc': 'Fiofanana sy asa nomerika mifamatotra amin’ny fanatsarana azo refesina.',
+
+  'clients.title': 'Ny',
+  'clients.titleGradient': 'Traikefa',
+  'clients.intro':
+    'Nanomboka tamin’ny taona 2019.Atokisana amin’ny fiofanana sy torohevitra — mivelatra amin’ny serivisy nomerika iraisam-pirenena.',
+  'clients.trustedTitle': 'Ireo mpamoritry ny fampiharanao rehetra',
+  'clients.testimonialsTitle': 'Ny hevitry ny mpiara-miasa',
+  'clients.testimonialsSubtitle': 'Fahitan’ireo mpiara-miasa taminay — izay eritreretin’izy ireo momba anay.',
+  'clients.stat1': 'Mpanjifa faly',
+  'clients.stat2': 'Fampiharana marina',
+  'clients.stat3': 'Nanomboka',
+  'clients.stat4': 'Tetikasa vita',
+  
+  'contact.title': 'Andao',
+  'contact.titleGradient': 'Hiara-hiasa',
+  'contact.subtitle1': 'Lazao ny tetikasanao na ny filana fiofanana.',
+  'contact.subtitle2': 'Hanampy anao hahita ny vahaolana tsara indrindra izahay.',
+  'contact.getInTouch': 'Mifandraisa aminay',
+  'contact.getInTouchLead':
+    'Email na WhatsApp — na ny taratasy. Hamaly amin’ny dingana manaraka ho an’ny web, fiofanana na torohevitra.',
+  'contact.info.email.title': 'Email',
+  'contact.info.email.desc': 'Hamaly anatin’ny 24 ora',
+  'contact.info.phone.title': 'Telefaona',
+  'contact.info.phone.desc': 'Fanontaniana haingana sy famandrihana',
+  'contact.info.offices.title': 'Biraon’ny ekipa',
+  'contact.info.offices.value': 'Madagasikara, Frantsa, India, Rosia, Korea Atsimo',
+  'contact.info.offices.desc': 'Ekipa iraisam-pirenena',
+  'contact.freeTitle': 'Tolo-tsaina maimaim-poana',
+  'contact.freeP1':
+    'Tsy fantatrao izay hatao voalohany? Manome fotoana maimaim-poana hamelanao hilaza ny filana — na hangataka topi-maso maimaim-poana amin’ny pejy fandraisana ho an’ny tranonkala.',
+  'contact.freeP2':
+    'Soraty « consult maimaim-poana » na « topi-maso pejy fandraisana » ao amin’ny hafatra dia hifanaraka amin’ny dingana manaraka isika.',
+  'contact.send': 'Handefa hafatra',
+  'contact.sending': 'Handefa...',
+  'contact.label.name': 'Anarana *',
+  'contact.label.email': 'Email *',
+  'contact.label.company': 'Orinasa',
+  'contact.label.service': 'Antony',
+  'contact.label.message': 'Hafatra *',
+  'contact.placeholder.name': 'Anarana',
+  'contact.placeholder.email': 'you@company.com',
+  'contact.placeholder.company': 'Orinasa',
+  'contact.placeholder.message': 'Hafatra ny tetikasanao na ny filana fiofanana...',
+  'contact.service.placeholder': 'Fidio ny antony',
+  'contact.service.web': 'Web services / digital solutions',
+  'contact.service.training': 'Fiofanana sy torohevitra',
+  'contact.service.both': 'Izy roa',
+  'contact.service.other': 'Hafa', 
+  'contact.web3formsError': 'Tsy voahatra ny hafatra. Andramo indray azafady.',
+  'contact.error': 'Tsy voahatra ny hafatra. Andramo indray azafady.',
+  'contact.formTitle': 'Hafatra ny hafatra',
+  'contact.sentTitle': 'Hafatra ny hafatra',
+  'contact.sentBody': 'Hamaly amin’ny dingana manaraka isika.', 
+  'footer.tagline': 'Hiofanana tsara kokoa · Hanangana tsara kokoa · Hitombo haingana kokoa',
+  'footer.blurb': 'Vahaolana nomerika sy fiofanana mahasoa Nanomboka tamin’ny  2019. Manome orinasa mikatsaka fitomboana amin’ny fisianao an-tserasera sy ny ekipa.',
+  'footer.quickLinks': 'Rohy haingana',
+  'footer.contactTitle': 'Fifandraisana',
+  'footer.intlTeam': 'Ekipa iraisam-pirenena',
+  'footer.privacy': 'Politikan’ny tsiambaratelo',
+  'footer.terms': 'Fepetra fampiasana',
+  'footer.backToTop': '↑',
+  'footer.phone': '+261 32 04 443 74',
+  'footer.locations': 'Madagasikara, Frantsa, India, Rosia, Korea Atsimo',
+  'footer.aria.linkedin': 'LinkedIn',
+  'footer.aria.twitter': 'Twitter',
+  'footer.aria.facebook': 'Facebook',
+  'footer.aria.instagram': 'Instagram',
+  'footer.aria.youtube': 'YouTube',
+  'footer.aria.tiktok': 'TikTok',
+  'footer.copyright': '© {year} S.Innovation. Zo rehetra voatokana.',
+
+
+  'ui.closeDialog': 'Akatona ny varavarankely',
+  'ui.ariaClose': 'Akatona',
+  'header.brand': 'S.Innovation',
+  'header.logoAlt': 'Logo S.Innovation',
+
+  'clients.carousel.prev': 'Famintinana teo aloha',
+  'clients.carousel.next': 'Famintinana manaraka',
+  'clients.carousel.goTo': 'Mankany amin’ny famintinana {n}',
+
+  'testimonial.1.name': 'Brunah Fabiola',
+  'testimonial.1.position': 'Mpamoritra',
+  'testimonial.1.company': 'Tsiky Solidarite',
+  'testimonial.1.content':
+    'Nampisy S.Innovation hanamafy ny fisianay nomerika. Fifandraisana mazava sy fiaraha-miasa marina manerana ny tetikasa.',
+  'testimonial.2.name': 'Camille Ratsimbazafy',
+  'testimonial.2.position': 'Filohan’ny orinasa',
+  'testimonial.2.company': 'RMK',
+  'testimonial.2.content':
+    'Fiofanana mahasoa mifanaraka amin’ny tena zava-misy eo amin’ny ekipa. Nahita fiaraha-miasa tsara kokoa isika taorian’ny herinandro vitsy.',
+  'testimonial.3.name': 'Misandratra',
+  'testimonial.3.position': 'Lohan’ny nomerika',
+  'testimonial.3.company': 'ISCAM',
+  'testimonial.3.content':
+    'Fanatanterahana matihanina ho an’ny filana web sy fianarana. Mifantoka amin’ny vokatra ary mora miara-miasa.',
+  'testimonial.4.name': 'Manoa Johanna',
+  'testimonial.4.position': 'Mpamoritra',
+  'testimonial.4.company': 'Rebuild & Restore Madagascar',
+  'testimonial.4.content':
+    'Misaotra indrindra ny asan’i S.Innovation — nahafahana manatona mpihaino iraisam-pirenena sy hilaza ny momba ny fikambanana sy ny vokatra entinay eto Madagasikara.',
+
+  'contact.formSubject': 'Taratasy fifandraisana — {name}',
+  'contact.formSubjectWithCompany': 'Taratasy fifandraisana — {name} ({company})',
+
+  'legal.lastUpdated': 'Fanavaozana farany',
+  'legal.privacy.title': 'Politika momba ny fiainana manokana',
+  'legal.privacy.s1h': '1. Fampidirana',
+  'legal.privacy.s1p':
+    'Ny S.Innovation ("izahay") manaja ny fiainana manokana. Ity politika ity dia milaza ny fomba fanangonana, fampiasana ary fiarovana ny angona manokana rehefa mampiasa ny tranokalantsika sy ny tolotra.',
+  'legal.privacy.s2h': '2. Angona voangona',
+  'legal.privacy.s2intro': 'Afaka angonina:',
+  'legal.privacy.s2li1':
+    'Ny mombamomba fifandraisana omenao (ohatra: anarana, mailaka, finday) rehefa mifandraika aminay.',
+  'legal.privacy.s2li2':
+    'Angona teknika toy ny adiresy IP, karazana navigateur ary pejy vitsivitsy nitsidika, ho an’ny fiarovana sy ny fandalinana.',
+  'legal.privacy.s2li3':
+    'Kôkizy na teknolojia mitovy raha ilaina, araka ny voalaza ao amin’ny fampahafantarana momba ny kôkizy.',
+  'legal.privacy.s3h': '3. Fomba fampiasana ny angona',
+  'legal.privacy.s3p':
+    'Ampiasainay izany hamaly ny fanontaniana, hanome ny tolotra, hanatsara ny tranokala, hanaja ny lalàna, ary hiarovana ny tombontsoa ara-drariny, raha ahazoana alalana araka ny lalàna.',
+  'legal.privacy.s4h': '4. Fitazonana sy fiarovana',
+  'legal.privacy.s4p':
+    'Mitazona angona manokana izahay araka ny faharetana ilaina amin’ireo tanjona ireo na araka ny lalàna. Manatanteraka fepetra teknika sy firafitana miaro ny angonanao.',
+  'legal.privacy.s5h': '5. Zo anao',
+  'legal.privacy.s5p':
+    'Araka ny lalàna mihatra (ohatra GDPR), mety hanana zo hahita, hanitsy, hamafa, hanakana, na hifidy tsy hampiasana ny angonanao ianao, ary hanana zo hanatitra fitarainana amin’ny manampahelo. Mifandraika aminay eto ambany raha te hampiasa ireo zo ireo.',
+  'legal.privacy.s6h': '6. Fifandraisana',
+  'legal.privacy.s6p': 'Raha manana fanontaniana momba ny fiainana manokana:',
+  'legal.privacy.email': 'contact@sinnov.info',
+
+  'legal.terms.title': 'Fepetra fampiasana',
+  'legal.terms.s1h': '1. Fekena',
+  'legal.terms.s1p':
+    'Rehefa miditra amin’ity tranokala ity na mifampiraharahana amin’ny S.Innovation, manaiky ireo fepetra ireo ianao. Raha tsy manaiky, tsarovy tsy hampiasa ny tranokala na ny tolotra.',
+  'legal.terms.s2h': '2. Tolotra',
+  'legal.terms.s2p':
+    'Manome vahaolana nomerika, fiofanana ary torohevitra izahay araka ny voalaza eo amin’ny tranokala na teboka na fifanarahana hafa. Ny vokatra, ny sarany ary ny fotoana dia fehezin’ny fifanarahana manokana raha misy.',
+  'legal.terms.s3h': '3. Fampiasana mendrika',
+  'legal.terms.s3p':
+    'Manaiky tsy hampiasa ratsy ny tranokala, tsy hiezaka miditra tsy nahazoana alalana, na hampiasa ny tolotra ho an’ny zavatra tsy ara-dalàna. Afaka manajanona na manakana ny fidiana izahay raha ilaina.',
+  'legal.terms.s4h': '4. Fananana ara-tsaina',
+  'legal.terms.s4p':
+    'Ny votoatin’ity tranokala (lahatsoratra, sary, marika) dia an’ny S.Innovation na ny mpiombona raha tsy voalaza hafa. Tsy misy alalana omena afa-tsy ny ilaina amin’ny fijerena ny tranokala.',
+  'legal.terms.s5h': '5. Fetra ny andraikitra',
+  'legal.terms.s5p':
+    'Araka ny fahafahana faratampony araka ny lalàna, tsy tompon’andraikitra ny S.Innovation amin’ny fatiantoka tsy mivantana na vokatry ny fampiasana ny tranokala. Tsy misy zavatra ao amin’ireo fepetra ireo manala ny andraikitra tsy azo esorina araka ny lalàna.',
+  'legal.terms.s6h': '6. Fanovana',
+  'legal.terms.s6p':
+    'Afaka manavao ireo fepetra ireo izahay isan-karazany. Ny fampiasana mitohy aorian’ny fanovana dia midika fa ekena ny fepetra vaovao.',
+  'legal.terms.s7h': '7. Fifandraisana',
+  'legal.terms.s7p': 'Fanontaniana momba ireo fepetra:',
+  'legal.terms.email': 'contact@sinnov.info',
+}
+
+export const mg = { ...en, ...mgOverrides } as TranslationDict

@@ -1,37 +1,48 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { useState } from 'react'
-import { Mail, Phone, MapPin, Send, CheckCircle } from 'lucide-react'
+import { useMemo, useState } from 'react'
+import { Mail, MapPin, Send, CheckCircle, MessageCircle, Gift } from 'lucide-react'
+import { useLanguage } from '@/context/LanguageContext'
 
-const contactInfo = [
-  {
-    icon: Mail,
-    title: "Email",
-    value: "contact@sinnov.info",
-    description: "Réponse sous 24h"
-  },
-  {
-    icon: Phone,
-    title: "Téléphone",
-    value: "+261 32 04 443 74 | +7 901 739 62 33",
-    description: "Lun-Ven 9h-18h"
-  },
-  {
-    icon: MapPin,
-    title: "Bureaux",
-    value: "Madagascar, France, Inde, Russie",
-    description: "Équipe internationale"
-  }
-]
+const WHATSAPP_URL = 'https://wa.me/261320444374'
 
 export default function ContactSection() {
+  const { t } = useLanguage()
+
+  const contactInfo = useMemo(
+    () => [
+      {
+        icon: Mail,
+        title: t('contact.info.email.title'),
+        value: 'contact@sinnov.info',
+        description: t('contact.info.email.desc'),
+        href: 'mailto:contact@sinnov.info',
+      },
+      {
+        icon: MessageCircle,
+        title: t('contact.info.phone.title'),
+        value: '+261 32 04 443 74',
+        description: t('contact.info.phone.desc'),
+        href: WHATSAPP_URL,
+      },
+      {
+        icon: MapPin,
+        title: t('contact.info.offices.title'),
+        value: t('contact.info.offices.value'),
+        description: t('contact.info.offices.desc'),
+        href: null as string | null,
+      },
+    ],
+    [t],
+  )
+
   const [formData, setFormData] = useState({
     name: '',
     email: '',
     company: '',
     service: '',
-    message: ''
+    message: '',
   })
   const [isSubmitted, setIsSubmitted] = useState(false)
   const [isLoading, setIsLoading] = useState(false)
@@ -40,7 +51,7 @@ export default function ContactSection() {
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     setFormData({
       ...formData,
-      [e.target.name]: e.target.value
+      [e.target.name]: e.target.value,
     })
   }
 
@@ -50,11 +61,9 @@ export default function ContactSection() {
     setError('')
 
     try {
-      // Web3Forms API configuration
       const web3formsAccessKey = 'bb46c38e-f7f4-474a-892a-64ad9f17a1ef'
       const web3formsEndpoint = 'https://api.web3forms.com/submit'
 
-      // Prepare data for Web3Forms
       const formDataToSend = {
         access_key: web3formsAccessKey,
         name: formData.name,
@@ -62,11 +71,14 @@ export default function ContactSection() {
         company: formData.company || '',
         service: formData.service || '',
         message: formData.message,
-        from_name: 'S.INNOVATION Contact Form',
-        subject: `Formulaire -  ${formData.name}${formData.company ? ` (${formData.company})` : ''}`,
+        from_name: 'S.INNOVATION',
+        subject: formData.company
+          ? t('contact.formSubjectWithCompany')
+              .replace('{name}', formData.name)
+              .replace('{company}', formData.company)
+          : t('contact.formSubject').replace('{name}', formData.name),
         reply_to: formData.email,
-        form_name: 'S.INNOVATION Contact Form',
-        website: 'S.INNOVATION Website'
+        website: 'S.INNOVATION',
       }
 
       const response = await fetch(web3formsEndpoint, {
@@ -74,7 +86,7 @@ export default function ContactSection() {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(formDataToSend)
+        body: JSON.stringify(formDataToSend),
       })
 
       const result = await response.json()
@@ -84,52 +96,42 @@ export default function ContactSection() {
         setFormData({ name: '', email: '', company: '', service: '', message: '' })
         setTimeout(() => setIsSubmitted(false), 5000)
       } else {
-        throw new Error(result.message || 'Failed to send message via Web3Forms')
+        throw new Error(result.message || t('contact.web3formsError'))
       }
     } catch (err) {
-      setError(err instanceof Error ? err.message : 'Une erreur est survenue. Veuillez réessayer.')
+      setError(err instanceof Error ? err.message : t('contact.error'))
     } finally {
       setIsLoading(false)
     }
   }
 
   return (
-    <section id="contact" className="py-20 bg-white">
+    <section id="contact" className="bg-white py-20 dark:bg-gray-950">
       <div className="container mx-auto px-4">
-        {/* Section Header */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
-          className="text-center mb-16"
+          className="mb-16 text-center"
         >
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-            Contactez <span className="text-gradient">S.INNOVATION</span>
+          <h2 className="mb-6 text-4xl font-bold text-gray-900 dark:text-white md:text-5xl">
+            {t('contact.title')} <span className="text-gradient">{t('contact.titleGradient')}</span>
           </h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Prêt à transformer vos idées en réalité ? Parlons de votre projet
-          </p>
+          <p className="mx-auto max-w-3xl text-xl text-gray-600 dark:text-gray-300">{t('contact.subtitle1')}</p>
+          <p className="mx-auto mt-3 max-w-2xl text-lg text-gray-600 dark:text-gray-300">{t('contact.subtitle2')}</p>
         </motion.div>
 
-        <div className="grid lg:grid-cols-2 gap-16">
-          {/* Contact Information */}
+        <div className="grid gap-16 lg:grid-cols-2">
           <motion.div
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
           >
-            <h3 className="text-2xl font-bold text-gray-900 mb-8">
-              Parlons de votre projet
-            </h3>
-            <p className="text-gray-600 mb-8 leading-relaxed">
-              Notre équipe d&apos;experts est prête à vous accompagner dans votre transformation digitale. 
-              Que ce soit pour un projet web, mobile, formation ou consultation, nous adaptons nos 
-              solutions à vos besoins spécifiques.
-            </p>
+            <h3 className="mb-4 text-2xl font-bold text-gray-900 dark:text-white">{t('contact.getInTouch')}</h3>
+            <p className="mb-8 leading-relaxed text-gray-600 dark:text-gray-300">{t('contact.getInTouchLead')}</p>
 
-            {/* Contact Cards */}
             <div className="space-y-6 mb-8">
               {contactInfo.map((info, index) => (
                 <motion.div
@@ -138,45 +140,43 @@ export default function ContactSection() {
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5, delay: index * 0.1 }}
                   viewport={{ once: true }}
-                  className="flex items-start space-x-4 p-6 bg-gray-50 rounded-xl"
+                  className="flex items-start space-x-4 rounded-xl bg-gray-50 p-6 dark:bg-gray-900"
                 >
-                  <div className="w-12 h-12 bg-secondary-100 rounded-lg flex items-center justify-center flex-shrink-0">
-                    <info.icon className="w-6 h-6 text-secondary-600" />
+                  <div className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-lg bg-secondary-100 dark:bg-secondary-900/40">
+                    <info.icon className="h-6 w-6 text-secondary-600 dark:text-secondary-400" />
                   </div>
-                  <div>
-                    <h4 className="font-semibold text-gray-900 mb-1">{info.title}</h4>
-                    <p className="text-gray-700 font-medium">{info.value}</p>
-                    <p className="text-sm text-gray-500">{info.description}</p>
+                  <div className="min-w-0 text-left">
+                    <h4 className="mb-1 font-semibold text-gray-900 dark:text-white">{info.title}</h4>
+                    {info.href ? (
+                      <a
+                        href={info.href}
+                        target={info.href.startsWith('http') ? '_blank' : undefined}
+                        rel={info.href.startsWith('http') ? 'noopener noreferrer' : undefined}
+                        className="break-all font-medium text-gray-700 hover:text-primary-600 dark:text-gray-200 dark:hover:text-primary-400"
+                      >
+                        {info.value}
+                      </a>
+                    ) : (
+                      <p className="font-medium text-gray-700 dark:text-gray-200">{info.value}</p>
+                    )}
+                    <p className="text-sm text-gray-500 dark:text-gray-400">{info.description}</p>
                   </div>
                 </motion.div>
               ))}
             </div>
 
-            {/* Why Choose Us */}
-            <div className="bg-gradient-to-r from-secondary-50 to-accent-50 rounded-xl p-6">
-              <h4 className="font-semibold text-gray-900 mb-4">Pourquoi choisir S.INNOVATION ?</h4>
-              <ul className="space-y-2 text-sm text-gray-600">
-                <li className="flex items-center">
-                  <CheckCircle className="w-4 h-4 text-green-500 mr-2" />
-                  Expertise technique reconnue
-                </li>
-                <li className="flex items-center">
-                  <CheckCircle className="w-4 h-4 text-green-500 mr-2" />
-                  Approche personnalisée
-                </li>
-                <li className="flex items-center">
-                  <CheckCircle className="w-4 h-4 text-green-500 mr-2" />
-                  Support 24/7
-                </li>
-                <li className="flex items-center">
-                  <CheckCircle className="w-4 h-4 text-green-500 mr-2" />
-                  Solutions durables
-                </li>
-              </ul>
+            <div className="mb-8 rounded-xl bg-gradient-to-r from-secondary-50 to-accent-50 p-6 dark:from-secondary-900/30 dark:to-accent-900/20">
+              <div className="flex items-start gap-3">
+                <Gift className="mt-0.5 h-6 w-6 flex-shrink-0 text-secondary-600 dark:text-secondary-400" />
+                <div>
+                  <h4 className="mb-2 font-semibold text-gray-900 dark:text-white">{t('contact.freeTitle')}</h4>
+                  <p className="mb-3 text-sm text-gray-600 dark:text-gray-300">{t('contact.freeP1')}</p>
+                  <p className="text-sm text-gray-600 dark:text-gray-300">{t('contact.freeP2')}</p>
+                </div>
+              </div>
             </div>
           </motion.div>
 
-          {/* Contact Form */}
           <motion.div
             initial={{ opacity: 0, x: 30 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -184,36 +184,30 @@ export default function ContactSection() {
             viewport={{ once: true }}
           >
             <div className="card p-8">
-              <h3 className="text-2xl font-bold text-gray-900 mb-6">
-                Demandez votre devis gratuit
-              </h3>
-              
+              <h3 className="mb-6 text-2xl font-bold text-gray-900 dark:text-white">{t('contact.formTitle')}</h3>
+
               {isSubmitted ? (
                 <motion.div
                   initial={{ opacity: 0, scale: 0.8 }}
                   animate={{ opacity: 1, scale: 1 }}
-                  className="text-center py-8"
+                  className="py-8 text-center"
                 >
-                  <CheckCircle className="w-16 h-16 text-green-500 mx-auto mb-4" />
-                  <h4 className="text-xl font-semibold text-gray-900 mb-2">
-                    Message envoyé !
-                  </h4>
-                  <p className="text-gray-600">
-                    Nous vous répondrons dans les plus brefs délais.
-                  </p>
+                  <CheckCircle className="mx-auto mb-4 h-16 w-16 text-green-500" />
+                  <h4 className="mb-2 text-xl font-semibold text-gray-900 dark:text-white">{t('contact.sentTitle')}</h4>
+                  <p className="text-gray-600 dark:text-gray-300">{t('contact.sentBody')}</p>
                 </motion.div>
               ) : (
                 <form onSubmit={handleSubmit} className="space-y-6">
                   {error && (
-                    <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-lg">
+                    <div className="rounded-lg border border-red-200 bg-red-50 px-4 py-3 text-red-700 dark:border-red-800 dark:bg-red-950/50 dark:text-red-300">
                       {error}
                     </div>
                   )}
-                  
-                  <div className="grid md:grid-cols-2 gap-6">
+
+                  <div className="grid gap-6 md:grid-cols-2">
                     <div>
-                      <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2">
-                        Nom complet *
+                      <label htmlFor="name" className="mb-2 block text-sm font-medium text-gray-700 dark:text-gray-300">
+                        {t('contact.label.name')}
                       </label>
                       <input
                         type="text"
@@ -222,13 +216,13 @@ export default function ContactSection() {
                         required
                         value={formData.name}
                         onChange={handleInputChange}
-                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-colors"
-                        placeholder="Votre nom"
+                        className="w-full rounded-lg border border-gray-300 bg-white px-4 py-3 transition-colors focus:border-transparent focus:ring-2 focus:ring-primary-500 dark:border-gray-600 dark:bg-gray-900 dark:text-white"
+                        placeholder={t('contact.placeholder.name')}
                       />
                     </div>
                     <div>
-                      <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
-                        Email *
+                      <label htmlFor="email" className="mb-2 block text-sm font-medium text-gray-700 dark:text-gray-300">
+                        {t('contact.label.email')}
                       </label>
                       <input
                         type="email"
@@ -237,16 +231,16 @@ export default function ContactSection() {
                         required
                         value={formData.email}
                         onChange={handleInputChange}
-                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-colors"
-                        placeholder="votre@email.com"
+                        className="w-full rounded-lg border border-gray-300 bg-white px-4 py-3 transition-colors focus:border-transparent focus:ring-2 focus:ring-primary-500 dark:border-gray-600 dark:bg-gray-900 dark:text-white"
+                        placeholder={t('contact.placeholder.email')}
                       />
                     </div>
                   </div>
 
-                  <div className="grid md:grid-cols-2 gap-6">
+                  <div className="grid gap-6 md:grid-cols-2">
                     <div>
-                      <label htmlFor="company" className="block text-sm font-medium text-gray-700 mb-2">
-                        Entreprise
+                      <label htmlFor="company" className="mb-2 block text-sm font-medium text-gray-700 dark:text-gray-300">
+                        {t('contact.label.company')}
                       </label>
                       <input
                         type="text"
@@ -254,33 +248,33 @@ export default function ContactSection() {
                         name="company"
                         value={formData.company}
                         onChange={handleInputChange}
-                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-colors"
-                        placeholder="Nom de votre entreprise"
+                        className="w-full rounded-lg border border-gray-300 bg-white px-4 py-3 transition-colors focus:border-transparent focus:ring-2 focus:ring-primary-500 dark:border-gray-600 dark:bg-gray-900 dark:text-white"
+                        placeholder={t('contact.placeholder.company')}
                       />
                     </div>
                     <div>
-                      <label htmlFor="service" className="block text-sm font-medium text-gray-700 mb-2">
-                        Service d&apos;intérêt
+                      <label htmlFor="service" className="mb-2 block text-sm font-medium text-gray-700 dark:text-gray-300">
+                        {t('contact.label.service')}
                       </label>
                       <select
                         id="service"
                         name="service"
                         value={formData.service}
                         onChange={handleInputChange}
-                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-colors"
+                        className="w-full rounded-lg border border-gray-300 bg-white px-4 py-3 transition-colors focus:border-transparent focus:ring-2 focus:ring-primary-500 dark:border-gray-600 dark:bg-gray-900 dark:text-white"
                       >
-                        <option value="">Sélectionnez un service</option>
-                        <option value="developpement">Conception et Développement</option>
-                        <option value="formation">Formation</option>
-                        <option value="consultation">Consultation d&apos;Entreprise</option>
-                        <option value="autre">Autre</option>
+                        <option value="">{t('contact.service.placeholder')}</option>
+                        <option value="web">{t('contact.service.web')}</option>
+                        <option value="training">{t('contact.service.training')}</option>
+                        <option value="both">{t('contact.service.both')}</option>
+                        <option value="other">{t('contact.service.other')}</option>
                       </select>
                     </div>
                   </div>
 
                   <div>
-                    <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-2">
-                      Message *
+                    <label htmlFor="message" className="mb-2 block text-sm font-medium text-gray-700 dark:text-gray-300">
+                      {t('contact.label.message')}
                     </label>
                     <textarea
                       id="message"
@@ -289,25 +283,25 @@ export default function ContactSection() {
                       rows={5}
                       value={formData.message}
                       onChange={handleInputChange}
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-colors resize-none"
-                      placeholder="Décrivez votre projet en détail..."
+                      className="w-full resize-none rounded-lg border border-gray-300 bg-white px-4 py-3 transition-colors focus:border-transparent focus:ring-2 focus:ring-primary-500 dark:border-gray-600 dark:bg-gray-900 dark:text-white"
+                      placeholder={t('contact.placeholder.message')}
                     />
                   </div>
 
                   <button
                     type="submit"
                     disabled={isLoading}
-                    className="w-full btn-primary flex items-center justify-center space-x-2 disabled:opacity-50 disabled:cursor-not-allowed"
+                    className="btn-primary flex w-full items-center justify-center space-x-2 disabled:cursor-not-allowed disabled:opacity-50"
                   >
                     {isLoading ? (
                       <>
-                        <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
-                        <span>Envoi en cours...</span>
+                        <div className="h-5 w-5 animate-spin rounded-full border-2 border-white border-t-transparent" />
+                        <span>{t('contact.sending')}</span>
                       </>
                     ) : (
                       <>
-                        <Send className="w-5 h-5" />
-                        <span>Envoyer le message</span>
+                        <Send className="h-5 w-5" />
+                        <span>{t('contact.send')}</span>
                       </>
                     )}
                   </button>

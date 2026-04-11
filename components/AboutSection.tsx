@@ -1,96 +1,103 @@
 'use client'
 
+import { useMemo } from 'react'
 import { motion } from 'framer-motion'
-import { Target, Eye, Users, MapPin, Award, Clock } from 'lucide-react'
+import { Target, Globe, Zap, TrendingUp, Users, MapPin, Award, Clock } from 'lucide-react'
 import Image from 'next/image'
-
-const stats = [
-  { icon: Clock, value: "5+", label: "Années d'expérience" },
-  { icon: Users, value: "50+", label: "Clients satisfaits" },
-  { icon: Award, value: "100+", label: "Projets réalisés" },
-  { icon: MapPin, value: "4", label: "Pays représentés" }
-]
-
-const locations = [
-  { country: "Madagascar", flag: "/MG.png", code: "MG" },
-  { country: "France", flag: "/FR.png", code: "FR" },
-  { country: "Inde", flag: "/IN.png", code: "IN" },
-  { country: "Russie", flag: "/RU.png", code: "RU" }
-]
+import { useLanguage } from '@/context/LanguageContext'
 
 export default function AboutSection() {
+  const { t } = useLanguage()
+
+  const stats = useMemo(
+    () => [
+      { icon: Clock, value: '2019', label: t('about.stat.established') },
+      { icon: Users, value: '50+', label: t('about.stat.clients') },
+      { icon: Award, value: '100+', label: t('about.stat.projects') },
+      { icon: MapPin, value: '5', label: t('about.stat.countries') },
+    ],
+    [t],
+  )
+
+  const locations = useMemo(
+    () => [
+      { countryKey: 'about.country.MG' as const, flag: '/MG.png', code: 'MG' },
+      { countryKey: 'about.country.FR' as const, flag: '/FR.png', code: 'FR' },
+      { countryKey: 'about.country.IN' as const, flag: '/IN.png', code: 'IN' },
+      { countryKey: 'about.country.RU' as const, flag: '/RU.png', code: 'RU' },
+      { countryKey: 'about.country.KR' as const, flag: '/KR.png', code: 'KR' },
+    ],
+    [],
+  )
+
+  const whyChoose = useMemo(
+    () => [
+      { icon: Target, title: t('about.why1.title'), desc: t('about.why1.desc') },
+      { icon: Globe, title: t('about.why2.title'), desc: t('about.why2.desc') },
+      { icon: Zap, title: t('about.why3.title'), desc: t('about.why3.desc') },
+      { icon: TrendingUp, title: t('about.why4.title'), desc: t('about.why4.desc') },
+    ],
+    [t],
+  )
+
   return (
-    <section id="about" className="py-20 bg-white">
+    <section id="about" className="bg-white py-20 dark:bg-gray-950">
       <div className="container mx-auto px-4">
-        {/* Section Header */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
-          className="text-center mb-16"
+          className="mb-16 text-center"
         >
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-            À Propos de <span className="text-gradient">S.INNOVATION</span>
+          <h2 className="mb-6 text-4xl font-bold text-gray-900 dark:text-white md:text-5xl">
+            {t('about.title')} <span className="text-gradient">{t('about.titleGradient')}</span>
           </h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Une équipe internationale passionnée par l'innovation et la transformation digitale
-          </p>
+          <p className="mx-auto max-w-3xl text-xl text-gray-600 dark:text-gray-300">{t('about.intro')}</p>
         </motion.div>
 
-        <div className="grid lg:grid-cols-2 gap-16 items-center mb-20 text-justify">
-          {/* Left Content */}
+        <div className="mb-20 grid items-center gap-16 text-left lg:grid-cols-2">
           <motion.div
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
           >
-            <h3 className="text-3xl font-bold text-gray-900 mb-6">
-              Notre Histoire
-            </h3>
-            <p className="text-lg text-gray-600 mb-6 leading-relaxed">
-              Depuis plus de 5 ans, nous accompagnons nos clients dans leurs projets les plus ambitieux. 
-              De la conception d'applications mobiles, le développement web, l'architecture, le marketing digital 
-              ainsi que les formations, nous accompagnons nos clients dans toutes les étapes de leurs projets.
-            </p>
-            <p className="text-lg text-gray-600 mb-8 leading-relaxed">
-              Notre équipe internationale, basée à Madagascar, en France, en Inde et en Russie, travaille en 
-              étroite collaboration pour vous offrir des solutions sur mesure et efficaces. Notre entreprise 
-              est en constante évolution pour mieux répondre à vos besoins.
-            </p>
+            <h3 className="mb-6 text-3xl font-bold text-gray-900 dark:text-white">{t('about.whoTitle')}</h3>
+            <p className="mb-6 text-lg leading-relaxed text-gray-600 dark:text-gray-300">{t('about.p1')}</p>
+            <p className="mb-8 text-lg leading-relaxed text-gray-600 dark:text-gray-300">{t('about.p2')}</p>
 
-            {/* International Presence */}
             <div className="mb-8">
-              <h4 className="text-xl font-semibold text-gray-900 mb-4">Présence Internationale</h4>
+              <h4 className="mb-4 text-xl font-semibold text-gray-900 dark:text-white">{t('about.whereTitle')}</h4>
               <div className="flex flex-wrap gap-3">
                 {locations.map((location, index) => (
-                  <div key={index} className="flex items-center space-x-3 bg-gray-50 px-4 py-2 rounded-lg">
-                    <div className="w-8 h-6 relative">
-                      <Image 
-                        src={location.flag} 
-                        alt={`Drapeau ${location.country}`}
+                  <div
+                    key={index}
+                    className="flex items-center space-x-3 rounded-lg bg-gray-50 px-4 py-2 dark:bg-gray-900"
+                  >
+                    <div className="relative h-6 w-8">
+                      <Image
+                        src={location.flag}
+                        alt=""
                         fill
-                        className="object-cover rounded-sm"
-                        onError={(e) => {
-                          // Fallback to emoji if image fails to load
-                          const target = e.target as HTMLImageElement;
-                          target.style.display = 'none';
-                          const parent = target.parentElement;
+                        className="rounded-sm object-cover"
+                        onError={e => {
+                          const target = e.target as HTMLImageElement
+                          target.style.display = 'none'
+                          const parent = target.parentElement
                           if (parent) {
-                            parent.innerHTML = `<span class="text-2xl">${getFlagEmoji(location.code)}</span>`;
+                            parent.innerHTML = `<span class="text-2xl">${getFlagEmoji(location.code)}</span>`
                           }
                         }}
                       />
                     </div>
-                    <span className="font-medium text-gray-700">{location.country}</span>
+                    <span className="font-medium text-gray-700 dark:text-gray-200">{t(location.countryKey)}</span>
                   </div>
                 ))}
               </div>
             </div>
           </motion.div>
 
-          {/* Right Content - Stats */}
           <motion.div
             initial={{ opacity: 0, x: 30 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -107,77 +114,36 @@ export default function AboutSection() {
                 viewport={{ once: true }}
                 className="card p-6 text-center"
               >
-                <div className="w-12 h-12 bg-primary-100 rounded-lg flex items-center justify-center mx-auto mb-4">
-                  <stat.icon className="w-6 h-6 text-primary-600" />
+                <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-primary-100 dark:bg-primary-900/40">
+                  <stat.icon className="h-6 w-6 text-primary-600 dark:text-primary-400" />
                 </div>
-                <div className="text-3xl font-bold text-gray-900 mb-2">{stat.value}</div>
-                <div className="text-sm text-gray-600">{stat.label}</div>
+                <div className="mb-2 text-3xl font-bold text-gray-900 dark:text-white">{stat.value}</div>
+                <div className="text-sm text-gray-600 dark:text-gray-400">{stat.label}</div>
               </motion.div>
             ))}
           </motion.div>
         </div>
 
-        {/* Mission & Vision */}
-        <div className="grid md:grid-cols-2 gap-12">
-          {/* Mission */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-            className="card p-8"
-          >
-                <div className="w-16 h-16 bg-gradient-to-r from-secondary-600 to-secondary-700 rounded-xl flex items-center justify-center mb-6">
-              <Target className="w-8 h-8 text-white" />
-            </div>
-            <h3 className="text-2xl font-bold text-gray-900 mb-4">Notre Mission</h3>
-            <p className="text-gray-600 leading-relaxed text-justify">
-              En tant que partenaire de confiance, nous accompagnons nos clients dans leur transformation digitale. 
-              Forts de notre expertise, nous concevons des solutions sur mesure, alliant intelligence, sécurité et durabilité. 
-              Notre approche personnalisée permet à nos clients d'optimiser leurs processus, d'améliorer leur efficacité 
-              et de réduire leur impact environnemental.
-            </p>
-          </motion.div>
-
-          {/* Vision */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            viewport={{ once: true }}
-            className="card p-8"
-          >
-            <div className="w-16 h-16 bg-gradient-to-r from-accent-600 to-accent-700 rounded-xl flex items-center justify-center mb-6">
-              <Eye className="w-8 h-8 text-white" />
-            </div>
-            <h3 className="text-2xl font-bold text-gray-900 mb-4">Notre Vision</h3>
-            <p className="text-gray-600 leading-relaxed text-justify">
-              Devenir le leader des solutions numériques responsables, en plaçant l'innovation au service d'un monde plus durable. 
-              Nous aspirons à créer un écosystème technologique qui non seulement répond aux besoins actuels, mais qui prépare 
-              l'avenir avec des solutions éthiques, durables et impactantes.
-            </p>
-          </motion.div>
-        </div>
-
-        {/* Values */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
-          className="mt-16 text-center"
         >
-          <h3 className="text-3xl font-bold text-gray-900 mb-8">Nos Valeurs</h3>
-          <div className="grid md:grid-cols-4 gap-6">
-            {[
-              { title: "Innovation", desc: "Toujours à la pointe de la technologie" },
-              { title: "Qualité", desc: "Excellence dans chaque projet" },
-              { title: "Collaboration", desc: "Travail d'équipe et partenariat" },
-              { title: "Durabilité", desc: "Solutions responsables et éthiques" }
-            ].map((value, index) => (
-              <div key={index} className="p-6 bg-gray-50 rounded-xl">
-                <h4 className="text-lg font-semibold text-gray-900 mb-2">{value.title}</h4>
-                <p className="text-sm text-gray-600">{value.desc}</p>
+          <h3 className="mb-4 text-center text-3xl font-bold text-gray-900 dark:text-white">
+            {t('about.whyTitle')}
+          </h3>
+          <p className="mx-auto mb-10 max-w-2xl text-center text-gray-600 dark:text-gray-300">
+            {t('about.whyIntro')}
+          </p>
+          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+            {whyChoose.map((item, index) => (
+              <div key={index} className="card p-6 text-center md:text-left">
+                <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-r from-secondary-600 to-accent-600 md:mx-0">
+                  <item.icon className="h-6 w-6 text-white" />
+                </div>
+                <h4 className="mb-2 text-lg font-semibold text-gray-900 dark:text-white">{item.title}</h4>
+                <p className="text-sm leading-relaxed text-gray-600 dark:text-gray-300">{item.desc}</p>
               </div>
             ))}
           </div>
@@ -187,13 +153,13 @@ export default function AboutSection() {
   )
 }
 
-// Helper function to get flag emoji as fallback
 function getFlagEmoji(countryCode: string): string {
   const flagEmojis: { [key: string]: string } = {
-    'MG': '🇲🇬',
-    'FR': '🇫🇷',
-    'IN': '🇮🇳',
-    'RU': '🇷🇺'
+    MG: '🇲🇬',
+    FR: '🇫🇷',
+    IN: '🇮🇳',
+    RU: '🇷🇺',
+    KR: '🇰🇷',
   }
   return flagEmojis[countryCode] || '🏳️'
 }

@@ -1,0 +1,257 @@
+import type { TranslationDict } from '../localeTypes'
+import { en } from './en'
+
+const ruOverrides: Partial<TranslationDict> = {
+  'site.title': 'S.Innovation — Цифровые решения и профессиональное обучение',
+
+  'nav.home': 'Главная',
+  'nav.services': 'Услуги',
+  'nav.about': 'О нас',
+  'nav.clients': 'Опыт',
+  'nav.contact': 'Контакты',
+
+  'header.tagline': 'Учитесь лучше · Создавайте лучше · Растите быстрее',
+
+  'hero.title.before': 'Развивайте бизнес с',
+  'hero.title.highlight': 'цифровыми решениями ',
+  'hero.title.after': 'и профессиональным обучением',
+  'hero.subtitle': 'Помогаем компаниям работать эффективнее — онлайн и внутри команд.',
+  'hero.lead':
+    'Хотите обучить команду или усилить онлайн-присутствие — мы даём экспертизу, чтобы двигать бизнес вперёд.',
+  'hero.badge1': 'Обучение и консалтинг',
+  'hero.badge2': 'Международная команда',
+  'hero.badge3': 'С 2019 года',
+  'hero.ctaPrimary': 'Выберите направление',
+  'hero.ctaSecondary': 'Связаться с нами',
+  'hero.seeMore': 'Подробнее',
+
+  'services.sectionTitle': 'Выберите',
+  'services.sectionGradient': 'путь',
+  'services.sectionSubtitle':
+    'Выберите фокус под ваши цели — мы сильны в обоих направлениях.',
+  'services.path1.title': 'Усильте онлайн-присутствие',
+  'services.path1.description':
+    'Проектируем и разрабатываем современные высокопроизводительные сайты, превращающие посетителей в клиентов.',
+  'services.path1.f1': 'UI/UX с упором на конверсию',
+  'services.path1.f2': 'Быстрая адаптивная разработка',
+  'services.path1.f3': 'Ориентация на бизнес-результат',
+  'services.path1.lead': 'Сайт, который работает на вас.',
+  'services.path1.cta': 'Узнать о веб-услугах',
+  'services.path2.title': 'Обучайте и укрепляйте команду',
+  'services.path2.description':
+    'Помогаем компаниям расти через практичные программы обучения с измеримым эффектом.',
+  'services.path2.f1': 'Развитие лидерства',
+  'services.path2.f2': 'Тимбилдинг',
+  'services.path2.f3': 'Корпоративное обучение и консалтинг',
+  'services.path2.lead': 'Раскройте потенциал людей — растите как компания.',
+  'services.path2.cta': 'Узнать о программах обучения',
+  'services.discussProject': 'Обсудить проект',
+
+  'services.modal.close': 'Закрыть',
+  'services.modal.web.title': 'Цифровые решения (веб-услуги)',
+  'services.modal.web.subtitle': 'Дизайн и разработка, ориентированные на результат',
+  'services.modal.web.intro':
+    'Сочетаем дизайн европейского уровня с эффективной разработкой, чтобы сайты были:',
+  'services.modal.web.h1': 'Профессиональными и современными',
+  'services.modal.web.h2': 'Оптимизированными по скорости и производительности',
+  'services.modal.web.h3': 'Созданными для лидов и доверия',
+  'services.modal.web.processTitle': 'Наш процесс',
+  'services.modal.web.p1': 'Понимание бизнеса и потребностей',
+  'services.modal.web.p2': 'UI/UX (до разработки)',
+  'services.modal.web.p3': 'Разработка и оптимизация',
+  'services.modal.web.p4': 'Запуск и поддержка',
+  'services.modal.training.title': 'Обучение и консалтинг',
+  'services.modal.training.subtitle': 'Практические программы для реального бизнес-эффекта',
+  'services.modal.training.intro': 'Имея опыт работы с компаниями, мы проводим обучение, которое:',
+  'services.modal.training.b1': 'Интерактивно и вовлекающе',
+  'services.modal.training.b2': 'Адаптировано под ваш контекст',
+  'services.modal.training.b3': 'Сфокусировано на измеримом улучшении',
+  'services.modal.training.expertiseTitle': 'Наша экспертиза',
+  'services.modal.training.e1': 'Лидерство и управление',
+  'services.modal.training.e2': 'Эффективность команды',
+  'services.modal.training.e3': 'Коммуникация и сотрудничество',
+
+  'about.title': 'О',
+  'about.titleGradient': 'S.Innovation',
+  'about.intro':
+    'Сильное обучение и современные цифровые решения — для компаний, которые хотят расти.',
+  'about.whoTitle': 'Кто мы',
+  'about.p1':
+    'С 2019 года S.Innovation поддерживает компании в обучении, консалтинге и цифровых проектах. Мы сочетаем практическое обучение и надёжную веб-реализацию, чтобы команда и онлайн-присутствие работали на рост.',
+  'about.p2':
+    'Наша международная команда сотрудничает из Мадагаскара, Франции, Индии, России и Южной Кореи, предлагая решения под ваш контекст.',
+  'about.whereTitle': 'Где мы работаем',
+  'about.country.MG': 'Мадагаскар',
+  'about.country.FR': 'Франция',
+  'about.country.IN': 'Индия',
+  'about.country.RU': 'Россия',
+  'about.country.KR': 'Южная Корея',
+  'about.stat.established': 'Основано',
+  'about.stat.clients': 'Довольные клиенты',
+  'about.stat.projects': 'Завершённые проекты',
+  'about.stat.countries': 'Страны',
+  'about.whyTitle': 'Почему S.Innovation?',
+  'about.whyIntro': 'Партнёр, который связывает технологии и развитие людей с вашими бизнес-целями.',
+  'about.why1.title': 'Сначала бизнес',
+  'about.why1.desc': 'Фокус на результатах, а не только на технических артефактах.',
+  'about.why2.title': 'Международный взгляд',
+  'about.why2.desc': 'Европа и Мадагаскар: глобальное понимание и локальная релевантность.',
+  'about.why3.title': 'Гибкая и эффективная реализация',
+  'about.why3.desc': 'Понятный процесс, быстрые итерации, без лишнего.',
+  'about.why4.title': 'Реальные результаты',
+  'about.why4.desc': 'Обучение и цифровые решения, связанные с измеримым улучшением.',
+
+  'clients.title': 'Наш',
+  'clients.titleGradient': 'опыт',
+  'clients.intro': 'С 2019 года предоставляем обучение и консалтинг — расширяем цифровые услуги на международном уровне.',
+  'clients.trustedTitle': 'Нам доверяют',
+  'clients.testimonialsTitle': 'Отзывы клиентов',
+  'clients.testimonialsSubtitle': 'Отзывы от партнеров, с которыми мы работаем.',
+  'clients.stat1': 'Довольные клиенты',
+  'clients.stat2': 'Реактивный поддержка',
+  'clients.stat3': 'Основано',
+  'clients.stat4': 'Завершённые проекты',
+  
+  'contact.title': 'Давайте',
+  'contact.titleGradient': 'работать вместе',
+  'contact.subtitle1': 'Расскажите о проекте или потребностях в обучении.',
+  'contact.subtitle2': 'Поможем найти лучшее решение для вашего бизнеса.',
+  'contact.getInTouch': 'Связаться',
+  'contact.getInTouchLead':
+    'Напишите на email или в WhatsApp — или используйте форму. Ответим с чёткими следующими шагами по веб-проектам, обучению или консалтингу.',
+  'contact.info.email.title': 'Email',
+  'contact.info.email.desc': 'Ответ в течение 24 часов',
+  'contact.info.phone.title': 'Телефон',
+  'contact.info.phone.desc': 'Быстрые вопросы и запись',
+  'contact.info.offices.title': 'Офисы',
+  'contact.info.offices.value': 'Мадагаскар, Франция, Индия, Россия, Южная Корея',
+  'contact.info.offices.desc': 'Международная команда',
+  'contact.freeTitle': 'Бесплатная возможность',
+  'contact.freeP1':
+    'Не знаете, с чего начать? Запишитесь на бесплатную консультацию или запросите бесплатный предпросмотр главной страницы для сайта.',
+  'contact.freeP2':
+    'Укажите в сообщении «бесплатная консультация» или «предпросмотр главной» — согласуем следующий шаг.',
+  'contact.send': 'Отправить',
+  'contact.sending': 'Отправка...',
+  'contact.label.name': 'Имя *',
+  'contact.label.email': 'Почта *',
+  'contact.label.company': 'Компания',
+  'contact.label.service': 'Область интереса',
+  'contact.label.message': 'Сообщение *',
+  'contact.placeholder.name': 'Имя',
+  'contact.placeholder.email': 'you@company.com',
+  'contact.placeholder.company': 'Компания',
+  'contact.placeholder.message': 'Расскажите о проекте или потребностях в обучении...',
+  'contact.service.placeholder': 'Выберите опцию',
+  'contact.service.web': 'Веб-услуги / цифровые решения',
+  'contact.service.training': 'Обучение и консалтинг',
+  'contact.service.both': 'Оба',
+  'contact.service.other': 'ВДругой',
+  'contact.web3formsError': 'Не удалось отправить сообщение. Попробуйте снова.',
+  'contact.error': 'Не удалось отправить сообщение. Попробуйте снова.',
+  'contact.formTitle': 'Отправить сообщение',
+  'contact.sentTitle': 'Сообщение отправлено',
+  'contact.sentBody': 'Мы ответим вам в ближайшее время.',
+
+  'footer.quickLinks': 'Быстрые ссылки',
+  'footer.contactTitle': 'Контакты',
+  'footer.privacy': 'Политика конфиденциальности',
+  'footer.terms': 'Условия использования',
+  'footer.backToTop': '↑',
+  'footer.phone': '+261 32 04 443 74',
+  'footer.locations': 'Мадагаскар, Франция, Индия, Россия, Южная Корея',
+  'footer.aria.linkedin': 'LinkedIn',
+  'footer.aria.twitter': 'Twitter',
+  'footer.aria.facebook': 'Facebook',
+  'footer.aria.instagram': 'Instagram',
+  'footer.aria.youtube': 'YouTube',
+  'footer.aria.tiktok': 'TikTok',
+  'footer.tagline': 'Учитесь лучше · Создавайте лучше · Растите быстрее',
+  'footer.blurb': 'Сильное обучение и современные цифровые решения — для компаний, которых хотят расти.',
+  'footer.intlTeam': 'Международная команда',
+  'footer.copyright': '© {year} S.Innovation. Все права защищены.',
+
+  'ui.closeDialog': 'Закрыть окно',
+  'ui.ariaClose': 'Закрыть',
+  'header.brand': 'S.Innovation',
+  'header.logoAlt': 'Логотип S.Innovation',
+
+  'clients.carousel.prev': 'Предыдущий отзыв',
+  'clients.carousel.next': 'Следующий отзыв',
+  'clients.carousel.goTo': 'Перейти к отзыву {n}',
+
+  'testimonial.1.name': 'Brunah Fabiola',
+  'testimonial.1.position': 'Основатель',
+  'testimonial.1.company': 'Tsiky Solidarite',
+  'testimonial.1.content':
+    'S.Innovation помог нам усилить цифровое присутствие. Чёткая коммуникация и настоящее партнёрство на всём протяжении проекта.',
+  'testimonial.2.name': 'Camille Ratsimbazafy',
+  'testimonial.2.position': 'Генеральный директор',
+  'testimonial.2.company': 'RMK',
+  'testimonial.2.content':
+    'Практичное обучение, соответствующее реальности нашей команды. Уже через несколько недель мы увидели лучшую совместную работу.',
+  'testimonial.3.name': 'Misandratra',
+  'testimonial.3.position': 'Цифровой лид',
+  'testimonial.3.company': 'ISCAM',
+  'testimonial.3.content':
+    'Профессиональная работа по веб-задачам и обучению. Ориентация на результат и удобное взаимодействие.',
+  'testimonial.4.name': 'Manoa Johanna',
+  'testimonial.4.position': 'Основатель',
+  'testimonial.4.company': 'Rebuild & Restore Madagascar',
+  'testimonial.4.content':
+    'Мы искренне благодарны работе S.Innovation — она дала нам возможность выйти на международную аудиторию и рассказать об организации и нашем влиянии на Мадагаскаре.',
+
+  'contact.formSubject': 'Форма обращения — {name}',
+  'contact.formSubjectWithCompany': 'Форма обращения — {name} ({company})',
+
+  'legal.lastUpdated': 'Последнее обновление',
+  'legal.privacy.title': 'Политика конфиденциальности',
+  'legal.privacy.s1h': '1. Введение',
+  'legal.privacy.s1p':
+    'S.Innovation («мы») уважает вашу конфиденциальность. Настоящая политика описывает, как мы собираем, используем и защищаем персональные данные при использовании веб-сайта и услуг.',
+  'legal.privacy.s2h': '2. Какие данные мы собираем',
+  'legal.privacy.s2intro': 'Мы можем собирать:',
+  'legal.privacy.s2li1':
+    'Контактные данные, которые вы отправляете (например, имя, email, телефон) при обращении к нам.',
+  'legal.privacy.s2li2':
+    'Технические данные, такие как IP-адрес, тип браузера и посещённые страницы, для безопасности и аналитики.',
+  'legal.privacy.s2li3':
+    'Файлы cookie или аналогичные технологии, где применимо, как указано в уведомлении о cookie.',
+  'legal.privacy.s3h': '3. Как мы используем данные',
+  'legal.privacy.s3p':
+    'Мы используем эту информацию для ответов на запросы, оказания услуг, улучшения сайта, соблюдения законодательства и защиты легитимных интересов, где это допускается законом.',
+  'legal.privacy.s4h': '4. Хранение и безопасность',
+  'legal.privacy.s4p':
+    'Мы храним персональные данные только столько, сколько необходимо для указанных целей или требует закон. Применяем соответствующие технические и организационные меры защиты.',
+  'legal.privacy.s5h': '5. Ваши права',
+  'legal.privacy.s5p':
+    'В соответствии с применимым правом (например, GDPR) вы можете иметь право на доступ, исправление, удаление, ограничение или возражение против обработки, а также подать жалобу в надзорный орган. Свяжитесь с нами по указанным ниже реквизитам.',
+  'legal.privacy.s6h': '6. Контакты',
+  'legal.privacy.s6p': 'По вопросам конфиденциальности:',
+  'legal.privacy.email': 'contact@sinnov.info',
+
+  'legal.terms.title': 'Условия использования',
+  'legal.terms.s1h': '1. Соглашение',
+  'legal.terms.s1p':
+    'Получая доступ к этому сайту или заключая с S.Innovation договор на услуги, вы соглашаетесь с настоящими условиями. Если не согласны, не используйте сайт и услуги.',
+  'legal.terms.s2h': '2. Услуги',
+  'legal.terms.s2p':
+    'Мы предоставляем цифровые решения, обучение и консалтинг, как описано на сайте или в отдельных предложениях и договорах. Конкретные результаты, оплата и сроки регулируются индивидуальными соглашениями, где применимо.',
+  'legal.terms.s3h': '3. Допустимое использование',
+  'legal.terms.s3p':
+    'Вы соглашаетесь не злоупотреблять сайтом, не пытаться получить несанкционированный доступ и не использовать услуги в незаконных целях. Мы можем приостановить или прекратить доступ при необходимости.',
+  'legal.terms.s4h': '4. Интеллектуальная собственность',
+  'legal.terms.s4p':
+    'Содержимое сайта (тексты, графика, логотипы) принадлежит S.Innovation или правообладателям, если не указано иное. Лицензия не предоставляется, кроме необходимой для просмотра сайта.',
+  'legal.terms.s5h': '5. Ограничение ответственности',
+  'legal.terms.s5p':
+    'В максимальной степени, допускаемой законом, S.Innovation не несёт ответственности за косвенный или последующий ущерб от использования сайта. Ничто в этих условиях не исключает ответственность, которую нельзя исключить по закону.',
+  'legal.terms.s6h': '6. Изменения',
+  'legal.terms.s6p':
+    'Мы можем периодически обновлять условия. Продолжение использования после изменений означает принятие новой редакции.',
+  'legal.terms.s7h': '7. Контакты',
+  'legal.terms.s7p': 'Вопросы по условиям:',
+  'legal.terms.email': 'contact@sinnov.info',
+}
+
+export const ru = { ...en, ...ruOverrides } as TranslationDict

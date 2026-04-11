@@ -3,8 +3,10 @@
 import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion'
 import { ArrowDown, Sparkles, Globe, Users } from 'lucide-react'
 import { useEffect } from 'react'
+import { useLanguage } from '@/context/LanguageContext'
 
 export default function HeroSection() {
+  const { t } = useLanguage()
   const scrollToServices = () => {
     const element = document.getElementById('services')
     if (element) {
@@ -12,15 +14,13 @@ export default function HeroSection() {
     }
   }
 
-  // Mouse position tracking
   const mouseX = useMotionValue(0)
   const mouseY = useMotionValue(0)
-  
+
   const springConfig = { damping: 25, stiffness: 150 }
   const x = useSpring(mouseX, springConfig)
   const y = useSpring(mouseY, springConfig)
 
-  // Transform values for different parallax effects
   const x1 = useTransform(x, value => value * 0.5)
   const y1 = useTransform(y, value => value * 0.5)
   const x2 = useTransform(x, value => value * -0.3)
@@ -41,16 +41,16 @@ export default function HeroSection() {
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
       try {
-        const heroSection = document.getElementById('hero-section')
+        const heroSection = document.getElementById('home')
         if (!heroSection) return
-        
+
         const rect = heroSection.getBoundingClientRect()
         const centerX = rect.width / 2
         const centerY = rect.height / 2
-        
+
         const deltaX = (e.clientX - rect.left - centerX) * 0.1
         const deltaY = (e.clientY - rect.top - centerY) * 0.1
-        
+
         mouseX.set(deltaX)
         mouseY.set(deltaY)
       } catch (error) {
@@ -58,7 +58,7 @@ export default function HeroSection() {
       }
     }
 
-    const heroSection = document.getElementById('hero-section')
+    const heroSection = document.getElementById('home')
     if (heroSection) {
       heroSection.addEventListener('mousemove', handleMouseMove)
       return () => {
@@ -68,8 +68,7 @@ export default function HeroSection() {
   }, [mouseX, mouseY])
 
   return (
-    <section id="hero-section" className="relative min-h-screen gradient-bg overflow-hidden">
-      {/* Background Animation Elements */}
+    <section id="home" className="relative gradient-bg overflow-hidden pb-8 md:pb-10">
       <div className="absolute inset-0">
         <motion.div
           className="absolute top-20 left-10 w-20 h-20 bg-white/10 rounded-full cursor-none"
@@ -119,8 +118,7 @@ export default function HeroSection() {
             y: y3,
           }}
         />
-        
-        {/* Additional floating circles for richer effect */}
+
         <motion.div
           className="absolute top-60 right-10 w-8 h-8 bg-secondary-400/20 rounded-full cursor-none"
           animate={{
@@ -137,7 +135,7 @@ export default function HeroSection() {
             y: y4,
           }}
         />
-        
+
         <motion.div
           className="absolute bottom-60 right-40 w-14 h-14 bg-accent-400/15 rounded-full cursor-none"
           animate={{
@@ -154,7 +152,7 @@ export default function HeroSection() {
             y: y5,
           }}
         />
-        
+
         <motion.div
           className="absolute top-32 left-1/2 w-6 h-6 bg-white/20 rounded-full cursor-none"
           animate={{
@@ -172,7 +170,6 @@ export default function HeroSection() {
           }}
         />
 
-        {/* Gold accent circles */}
         <motion.div
           className="absolute top-1/4 left-1/4 w-10 h-10 bg-secondary-500/25 rounded-full cursor-none"
           animate={{
@@ -189,7 +186,7 @@ export default function HeroSection() {
             y: y7,
           }}
         />
-        
+
         <motion.div
           className="absolute bottom-1/3 right-1/3 w-16 h-16 bg-accent-500/20 rounded-full cursor-none"
           animate={{
@@ -208,66 +205,70 @@ export default function HeroSection() {
         />
       </div>
 
-      <div className="container mx-auto px-4 pt-32 pb-16 relative z-10">
+      <div className="container mx-auto px-4 pt-40 md:pt-44 relative z-10">
         <div className="text-center">
-          {/* Main Title */}
           <motion.h1
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            className="text-5xl md:text-7xl font-bold text-white mb-6"
+            className="text-5xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4 leading-tight"
           >
-            Solutions Numériques
-            <br />
+            {t('hero.title.before')}{' '}
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-secondary-400 to-accent-400">
-              Responsables
+              {t('hero.title.highlight')}
             </span>
+            {t('hero.title.after')}
           </motion.h1>
 
-          {/* Subtitle */}
           <motion.p
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="text-xl md:text-2xl text-white/90 mb-8 max-w-3xl mx-auto leading-relaxed"
+            transition={{ duration: 0.8, delay: 0.1 }}
+            className="text-xl md:text-2xl text-white/95 mb-6 max-w-3xl mx-auto font-medium"
           >
-            Depuis plus de 5 ans, nous accompagnons nos clients dans leurs projets les plus ambitieux. 
-            De la conception au déploiement, nous créons des solutions sur mesure qui transforment votre vision en réalité.
+            {t('hero.subtitle')}
           </motion.p>
 
-          {/* Stats */}
+          <motion.p
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.25 }}
+            className="text-base md:text-lg text-white/80 mb-8 max-w-2xl mx-auto leading-relaxed"
+          >
+            {t('hero.lead')}
+          </motion.p>
+
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
-            className="flex flex-wrap justify-center gap-8 mb-12"
+            transition={{ duration: 0.8, delay: 0.35 }}
+            className="flex flex-wrap justify-center gap-8 mb-8"
           >
             <div className="flex items-center space-x-2 text-white">
               <Users className="w-6 h-6" />
-              <span className="text-lg font-semibold">5+ Ans d'expérience</span>
+              <span className="text-lg font-semibold">{t('hero.badge1')}</span>
             </div>
             <div className="flex items-center space-x-2 text-white">
               <Globe className="w-6 h-6" />
-              <span className="text-lg font-semibold">Équipe Internationale</span>
+              <span className="text-lg font-semibold">{t('hero.badge2')}</span>
             </div>
             <div className="flex items-center space-x-2 text-white">
               <Sparkles className="w-6 h-6" />
-              <span className="text-lg font-semibold">Solutions Innovantes</span>
+              <span className="text-lg font-semibold">{t('hero.badge3')}</span>
             </div>
           </motion.div>
 
-          {/* CTA Buttons */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.6 }}
-            className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-16"
+            transition={{ duration: 0.8, delay: 0.5 }}
+            className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-6"
           >
             <button
-              onClick={() => scrollToServices}
+              onClick={() => scrollToServices()}
               className="bg-white text-primary-600 hover:bg-gray-100 font-semibold py-4 px-8 rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"
             >
-              Découvrir nos Services
+              {t('hero.ctaPrimary')}
             </button>
             <button
               onClick={() => {
@@ -278,18 +279,17 @@ export default function HeroSection() {
               }}
               className="border-2 border-white text-white hover:bg-white hover:text-primary-600 font-semibold py-4 px-8 rounded-lg transition-all duration-300 transform hover:scale-105"
             >
-              Demander un Devis
+              {t('hero.ctaSecondary')}
             </button>
           </motion.div>
 
-          {/* Scroll Indicator */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.8, delay: 1 }}
-            className="flex flex-col items-center"
+            className="flex flex-col items-center pt-1"
           >
-            <span className="text-white/70 mb-2">Découvrez plus</span>
+            <span className="text-white/70 mb-1.5">{t('hero.seeMore')}</span>
             <motion.button
               onClick={scrollToServices}
               animate={{ y: [0, 10, 0] }}
