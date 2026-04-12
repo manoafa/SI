@@ -82,6 +82,11 @@ export const en: TranslationDict = {
   'services.modal.training.e1': 'Leadership & management',
   'services.modal.training.e2': 'Team performance',
   'services.modal.training.e3': 'Communication & collaboration',
+  'services.modal.training.e4': 'Coaching & Accompaniement',
+  'services.modal.training.e5': 'Change Management',
+  'services.modal.training.e6': 'Crisis Management',
+  'services.modal.training.e7': 'Strategy and Business Development',
+  'services.modal.training.e8': 'Executive Search',
 
   'about.title': 'About',
   'about.titleGradient': 'S.Innovation',

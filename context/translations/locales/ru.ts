@@ -70,6 +70,11 @@ const ruOverrides: Partial<TranslationDict> = {
   'services.modal.training.e1': 'Лидерство и управление',
   'services.modal.training.e2': 'Эффективность команды',
   'services.modal.training.e3': 'Коммуникация и сотрудничество',
+  'services.modal.training.e4': 'Коучинг и сопровождение',
+  'services.modal.training.e5': 'Управление изменениями',
+  'services.modal.training.e6': 'Управление кризисом',
+  'services.modal.training.e7': 'Стратегия и развитие бизнеса',
+  'services.modal.training.e8': 'Поиск руководителей (Executive Search)',
 
   'about.title': 'О',
   'about.titleGradient': 'S.Innovation',

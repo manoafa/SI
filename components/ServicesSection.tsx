@@ -16,6 +16,10 @@ import {
   Crown,
   TrendingUp,
   MessageCircle,
+  UserCheck,
+  RefreshCw,
+  ShieldAlert,
+  Briefcase,
   type LucideIcon,
 } from 'lucide-react'
 
@@ -97,6 +101,11 @@ export default function ServicesSection() {
       { icon: Crown, label: t('services.modal.training.e1') },
       { icon: TrendingUp, label: t('services.modal.training.e2') },
       { icon: MessageCircle, label: t('services.modal.training.e3') },
+      { icon: UserCheck, label: t('services.modal.training.e4') },
+      { icon: RefreshCw, label: t('services.modal.training.e5') },
+      { icon: ShieldAlert, label: t('services.modal.training.e6') },
+      { icon: Briefcase, label: t('services.modal.training.e7') },
+      { icon: Search, label: t('services.modal.training.e8') },
     ],
     [t],
   )
@@ -301,7 +310,7 @@ export default function ServicesSection() {
                     <h4 className="mb-4 text-xl font-bold text-gray-900 dark:text-white">
                       {t('services.modal.training.expertiseTitle')}
                     </h4>
-                    <div className="grid sm:grid-cols-3 gap-4">
+                    <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
                       {expertiseItems.map((item, i) => (
                         <ModalIconCard key={i}>
                           <div className="mb-3 flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-primary-500/15 to-secondary-500/20 dark:from-primary-500/25 dark:to-secondary-500/30">

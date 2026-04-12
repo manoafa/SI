@@ -70,6 +70,11 @@ const mgOverrides: Partial<TranslationDict> = {
   'services.modal.training.e1': 'Leadership sy management',
   'services.modal.training.e2': 'Hery ny ekipa',
   'services.modal.training.e3': 'Communication sy fiaraha-miasa',
+  'services.modal.training.e4': 'Coaching sy fanohanana',
+  'services.modal.training.e5': 'Fitantanana ny fiovana',
+  'services.modal.training.e6': 'Fitantanana ny krizy',
+  'services.modal.training.e7': 'Stratejia sy fampandrosoana ara-barotra',
+  'services.modal.training.e8': 'Fikarohana mpitantana ambony',
 
   'about.title': 'Momban’ny ',
   'about.titleGradient': 'S.Innovation',

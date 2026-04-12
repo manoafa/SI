@@ -70,6 +70,11 @@ const koOverrides: Partial<TranslationDict> = {
   'services.modal.training.e1': '리더십 및 경영',
   'services.modal.training.e2': '팀 성과',
   'services.modal.training.e3': '의사소통과 협업',
+  'services.modal.training.e4': '코칭 및 동행',
+  'services.modal.training.e5': '변화 관리',
+  'services.modal.training.e6': '위기 관리',
+  'services.modal.training.e7': '전략 및 사업 개발',
+  'services.modal.training.e8': '임원 채용',
 
   'about.title': '소개',
   'about.titleGradient': 'S.Innovation',

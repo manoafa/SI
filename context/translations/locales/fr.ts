@@ -71,6 +71,11 @@ const frOverrides: Partial<TranslationDict> = {
   'services.modal.training.e1': 'Leadership et management',
   'services.modal.training.e2': 'Performance d’équipe',
   'services.modal.training.e3': 'Communication et collaboration',
+  'services.modal.training.e4': 'Coaching & Accompagnement',
+  'services.modal.training.e5': 'Conduite de changement',
+  'services.modal.training.e6': 'Gestion de crise',
+  'services.modal.training.e7': 'Stratégie et développement d’affaires',
+  'services.modal.training.e8': 'Recrutement de cadres',
 
   'about.title': 'À propos de',
   'about.titleGradient': 'S.Innovation',
