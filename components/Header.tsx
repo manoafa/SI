@@ -50,8 +50,8 @@ export default function Header() {
   const navMuted = isScrolled ? 'text-gray-700 dark:text-gray-200' : 'text-white'
   const navHover = 'hover:text-primary-600 dark:hover:text-secondary-400'
 
-  const LangPicker = ({ compact }: { compact?: boolean }) => (
-    <div className={`relative ${compact ? 'w-full' : ''}`} ref={compact ? undefined : langRef}>
+  const LangPicker = () => (
+    <div className="relative" ref={langRef}>
       <button
         type="button"
         onClick={() => setLangOpen(o => !o)}
@@ -77,9 +77,7 @@ export default function Header() {
       {langOpen && (
         <ul
           role="listbox"
-          className={`absolute right-0 z-[60] mt-1 min-w-[11rem] rounded-lg border border-gray-200 bg-white py-1 shadow-lg dark:border-gray-700 dark:bg-gray-900 ${
-            compact ? 'left-0 right-0' : ''
-          }`}
+          className="absolute right-0 z-[60] mt-1 min-w-[11rem] rounded-lg border border-gray-200 bg-white py-1 shadow-lg dark:border-gray-700 dark:bg-gray-900"
         >
           {LANGS.map(({ code, flag }) => (
             <li key={code} role="option" aria-selected={language === code}>
@@ -197,8 +195,35 @@ export default function Header() {
         </div>
 
         {isMenuOpen && (
-          <div className="mt-4 rounded-lg bg-white py-4 shadow-lg dark:bg-gray-900 md:hidden">
+          <div className="mt-4 rounded-lg border border-white/40 bg-white/45 py-4 shadow-2xl backdrop-blur-md backdrop-saturate-150 ring-1 ring-black/5 dark:border-gray-700/50 dark:bg-gray-900/40 dark:ring-white/10 md:hidden">
             <div className="flex flex-col space-y-4 px-4">
+              <div className="flex justify-center border-b border-white/40 pb-3 dark:border-gray-700/60">
+                <div className="flex items-center gap-2">
+                <button
+                  type="button"
+                  onClick={toggleTheme}
+                  className="rounded-lg p-2 text-gray-700 transition-colors duration-300 hover:bg-white/40 dark:text-gray-200 dark:hover:bg-white/10"
+                  aria-label={theme === 'dark' ? t('ui.lightMode') : t('ui.darkMode')}
+                >
+                  {theme === 'dark' ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
+                </button>
+                {LANGS.map(({ code, flag }) => (
+                  <button
+                    key={code}
+                    type="button"
+                    onClick={() => setLanguage(code)}
+                    className={`rounded-md p-1 transition-colors ${
+                      language === code
+                        ? 'ring-2 ring-primary-500'
+                        : 'hover:bg-white/40 dark:hover:bg-white/10'
+                    }`}
+                    aria-label={t(`lang.${code}`)}
+                  >
+                    <Image src={flag} alt="" width={22} height={16} className="rounded-sm object-cover" />
+                  </button>
+                ))}
+                </div>
+              </div>
               <button
                 type="button"
                 onClick={() => scrollToSection('home')}
@@ -227,11 +252,6 @@ export default function Header() {
               >
                 {t('nav.clients')}
               </button>
-              <div className="border-t border-gray-100 pt-2 dark:border-gray-800">
-                <div ref={langRef} className="w-full">
-                  <LangPicker compact />
-                </div>
-              </div>
               <button
                 type="button"
                 onClick={() => scrollToSection('contact')}
